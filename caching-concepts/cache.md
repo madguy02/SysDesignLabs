@@ -108,3 +108,45 @@ Here are the primary caching strategies:
 	    checking comments, then for the first few users the data is pulled
 	    from primary storage and then cached just to avoid "cache
 	    pollution", as a result first few requests will be slow
+
+
+### Eviction Strategies
+
+Common strategies used for cache eviction:
+
+	1) **LRU (Least Recently Used):** It removes the data that has least amount 
+	of usage and is least likely to be ever used again
+
+		How it works: It maintains an order based on their access time inside the cache
+		When the cache is full, it simply evicts the data at the very end of the list
+
+		Best for: General purpose caching.
+	
+
+	2) **LFU (Least Frequently Used):** It looks at the popularity of the data rather than timing
+
+		How it works: Everytime a piece of data is accessed, a counter is incremented.When the cache is full
+		it evicts the data with least counter value
+
+		Trade-off: An item that could be extremely popular an hour ago, might stay in the cache for too long even
+		if the popularity is dead.
+	
+	
+	3) **FIFO (First In First out):** This is the simplest cache eviction policy
+		
+		How it works: It evicts the data exactly the same way it is inserted, regardless of how many times 
+		it was accessed
+
+		Best-for: where the data has a predictable life-cyle or we want to reduce CPU overhead of tracking access time
+
+	
+	4) **Random Replacement:** This is as the name say, it randomly evicts a key
+
+		The Pro: It requires almost 0 CPU or memory to track metadata like counters or time etc.
+
+		The Con: It can very well delete the hottest key in the cache
+
+	
+	5) **TTL:** Here we attach a time-to-live value to the key, so it expires as the time is reached 
+	its expiration and not eviction
+
