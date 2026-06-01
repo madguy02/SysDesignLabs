@@ -70,4 +70,3 @@ This guide covers core fundamentals, advanced distributed systems concepts, and 
 * **Infrastructure**: Rate Limiter, API Gateway, Distributed Job Scheduler, Distributed Cache.
 
 ---
-*Generated for GitHub Repository Upload*
